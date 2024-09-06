@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://shabusiness035:<db_password>@cluster0.ucii3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.ucii3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -24,7 +24,11 @@ async function run() {
     // await client.connect();
     // Send a ping to confirm a successful connection
 
+
     app.get('/',(req,res)=>{ res.send('FurniFlex server')})
+
+  
+
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
