@@ -24,10 +24,20 @@ async function run() {
     // await client.connect();
     // Send a ping to confirm a successful connection
 
+    const productsCollection = client.db('FurniFlex').collection('products')
 
     app.get('/',(req,res)=>{ res.send('FurniFlex server')})
 
-    
+    app.get('/products',async (req,res)=>{
+          try{
+            const products = await productsCollection.find().toArray()
+            res.status(200).send(products)
+          }
+          catch(err){
+            console.log(err.message)
+          }
+  
+    })
 
 
     await client.db("admin").command({ ping: 1 });
