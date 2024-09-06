@@ -5,6 +5,11 @@ require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 5000
 
+app.use(json())
+app.use(cors({
+   origin: 'http://localhost:5173',
+}))
+
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.ucii3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
