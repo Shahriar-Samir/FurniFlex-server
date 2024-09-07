@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000
 
 app.use(express.json())
 app.use(cors({
-   origin: 'http://localhost:5173',
+   origin: ['http://localhost:5173','https://furni-flex-client.vercel.app'],
 }))
 
 
@@ -30,7 +30,7 @@ async function run() {
     // Send a ping to confirm a successful connection
 
     const productsCollection = client.db('FurniFlex').collection('products')
-    const cartCollection = client.db('FurniFlex').collection('carts')
+
 
     app.get('/',(req,res)=>{ res.send('FurniFlex server')})
 
