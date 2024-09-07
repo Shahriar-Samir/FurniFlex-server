@@ -5,7 +5,7 @@ require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 5000
 
-app.use(json())
+app.use(express.json())
 app.use(cors({
    origin: 'http://localhost:5173',
 }))
@@ -30,6 +30,7 @@ async function run() {
     // Send a ping to confirm a successful connection
 
     const productsCollection = client.db('FurniFlex').collection('products')
+    const cartCollection = client.db('FurniFlex').collection('carts')
 
     app.get('/',(req,res)=>{ res.send('FurniFlex server')})
 
@@ -45,11 +46,12 @@ async function run() {
     })
 
 
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
