@@ -31,6 +31,9 @@ async function run() {
 
     const productsCollection = client.db('FurniFlex').collection('products')
 
+    
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     app.get('/',(req,res)=>{ res.send('FurniFlex server')})
 
@@ -45,10 +48,6 @@ async function run() {
   
     })
 
-
-
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
